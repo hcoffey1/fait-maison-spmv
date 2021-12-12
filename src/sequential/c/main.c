@@ -12,6 +12,7 @@
 #include "conversions.h"
 #include "utils.h"
 #include "config.h"
+#include "gem5/m5ops.h"
 
 #ifdef DEBUG
 #include "papi.h"
@@ -22,6 +23,7 @@
 
 int main(int argc, char* argv[])
 {
+  m5_dump_reset_stats(0,1000000);
   int ret_code, r, c, k;
   MM_typecode matcode;
   FILE *f, *g;
@@ -37,7 +39,8 @@ int main(int argc, char* argv[])
   long long values[NUM_EVENTS];
   unsigned int native = 0x0;
   #endif
-
+    
+  fprintf(stderr, "Input file %s\n", argv[1]);
   #ifndef DENSE
   if(argc < 2){
     fprintf(stderr, "Usage: %s [martix-market-filename]\n", argv[0]);
@@ -458,7 +461,8 @@ int main(int argc, char* argv[])
   free(coo_val);
   free(colind);
   free(val);
-
+    
+  fprintf(stderr, "done\n");
   return 0;
 }
 

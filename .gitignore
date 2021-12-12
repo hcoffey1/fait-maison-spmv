@@ -1,1 +1,3 @@
 *.s
+m5out
+run_float

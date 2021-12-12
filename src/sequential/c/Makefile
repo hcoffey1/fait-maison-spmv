@@ -1,7 +1,9 @@
 SHELL := '/bin/bash'
-CC = gcc-7
+CC = gcc
 
-INCLUDES = -I./include
+gem5Path=/home/hayden/proj/cs752/cache/gem5Public/gem5
+
+INCLUDES = -I./include -I $(gem5Path)/include
 
 SRCS = main.c spmv_csr.c spmv_coo.c spmv_dia.c spmv_ell.c conversions.c utils.c mmio.c
 OBJS = $(SRCS:.c=.o)
@@ -10,7 +12,7 @@ ASMS = $(SRCS:.c=.s)
 FEATURES_SRCS = features.c mmio.c utils.c
 FEATURES_OBJS = $(FEATURES_SRCS:.c=.o)
 
-LIBS = -lm
+LIBS = -lm -L $(gem5Path)/util/m5/build/x86/out -lm5
 
 CFLAGS = -m64 -march=native -mtune=native -O3 -Wno-unused-result
 
